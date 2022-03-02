@@ -169,15 +169,25 @@ class employeeClass:
         try:
             if self.var_emp_id.get() == "":
                 messagebox.showerror("Error", "Employee ID must be required", parent=self.root)
+            if self.var_name.get()== "":
+                   messagebox.showerror("Error", "Empty Name", parent=self.root)
+            if self.var_email.get()== "":
+                   messagebox.showerror("Error", "Empty email", parent=self.root)
+            if self.var_gender.get() == "":
+                   messagebox.showerror("Error", "Empty gender", parent=self.root)
+
+
+
             else:
                 cur.execute("Select * from employee where eid=?", (self.var_emp_id.get(),))
                 row = cur.fetchone()
-                if row != None:
+                if row !=None:
                     messagebox.showerror("Error", "This Employee ID is already assigned try different",
                                          parent=self.root)
                 else:
                     cur.execute(
-                        "Insert into employee (eid,name,email,gender,contact,dob,doj,pass,utype,address,salary) values(?,?,?,?,?,?,?,?,?,?,?)",
+                        "Insert into employee (eid,name,email,gender,contact,dob,doj,pass,utype,address,salary) "
+                        "values(?,?,?,?,?,?,?,?,?,?,?)",
                         (
                             self.var_emp_id.get(),
                             self.var_name.get(),
