@@ -1,12 +1,12 @@
 
-from logging import root
-from msilib.schema import File
+# from logging import root
+ # from msilib.schema import File
 import sqlite3
 from tkinter import *
-from tkinter import font
-from turtle import title, width
-from unicodedata import category
-from PIL import Image, ImageTk  # pip install pillow
+# from tkinter import font
+# from turtle import title, width
+# from unicodedata import category
+# from PIL import Image, ImageTk  # pip install pillow
 from employee import employeeClass
 from supplier import supplierClass
 from category import categoryClass
