@@ -1,18 +1,8 @@
- # from cgitb import text
-# from operator import index
-# from select import select
-# from textwrap import fill
-from tkinter import *
-# from turtle import title
-from PIL import Image, ImageTk
-# from tkinter import ttk
-from tkinter import messagebox
-# import sqlite3
 import os
-
-# from pkg_resources import EntryPoint
-
-
+from tkinter import *
+from PIL import Image, ImageTk #pip install pillow
+from tkinter import  messagebox#,ttk
+#import sqlite3
 class salesClass:
     def __init__(self, root):
         self.root = root
@@ -22,7 +12,6 @@ class salesClass:
         self.root.focus_force()
 
         self.bill_list = []
-
         self.var_invoice = StringVar()
 
         # ==============================Title==================================
@@ -30,8 +19,8 @@ class salesClass:
                           bd=3, relief=RIDGE).pack(side=TOP, fill=X, padx=10, pady=20)
 
         lbl_invoice = Label(self.root, text="Invoice No", font=("times new roman", 15), bg="white").place(x=50, y=100)
-        txt_invoice = Entry(self.root, textvariable=self.var_invoice, font=("times new roman", 15),
-                            bg="lightyellow").place(x=160, y=100, width=180, height=28)
+        txt_invoice = Entry(self.root, textvariable=self.var_invoice,
+                            font=("times new roman", 15), bg="lightyellow").place(x=160, y=100, width=180, height=28)
 
         btn_search = Button(self.root, text="Search", command=self.search, font=("times new roman", 15, "bold"),
                             bg="#2196f3", fg="white", cursor="hand2").place(x=360, y=100, width=120, height=28)
@@ -53,7 +42,7 @@ class salesClass:
         bill_Frame = Frame(self.root, bd=3, relief=RIDGE)
         bill_Frame.place(x=280, y=140, width=410, height=330)
         lbl_title2 = Label(bill_Frame, text="Customer Bill Area", font=("goudy old style", 20), bg="orange",
-                           fg="white").pack(side=TOP, fill=X)
+                           ).pack(side=TOP, fill=X)
 
         scrolly2 = Scrollbar(bill_Frame, orient=VERTICAL)
         self.bill_area = Text(bill_Frame, bg="lightyellow", yscrollcommand=scrolly2.set)
@@ -63,7 +52,7 @@ class salesClass:
 
         # ======================Image=================================
         self.bill_photo = Image.open("C:\\Users\\simran\\Downloads\\bg.png")
-        self.bill_photo = self.bill_photo.resize((390, 380), Image.ANTIALIAS)
+        self.bill_photo = self.bill_photo.resize((450, 300), Image.ANTIALIAS)
         self.bill_photo = ImageTk.PhotoImage(self.bill_photo)
 
         lbl_image = Label(self.root, image=self.bill_photo, bd=0)

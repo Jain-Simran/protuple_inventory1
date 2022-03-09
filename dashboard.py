@@ -8,6 +8,7 @@ from tkinter import *
 # from unicodedata import category
 # from PIL import Image, ImageTk  # pip install pillow
 from employee import employeeClass
+from login import root_dir
 from supplier import supplierClass
 from category import categoryClass
 from product import productClass
@@ -25,7 +26,7 @@ class IMS:
         self.root.config(bg="white")
 
         # ====title====
-        self.icon_title = PhotoImage(file="C:\\Users\\simran\\Downloads\\logo1.png")
+        self.icon_title = PhotoImage(file=os.path.join(root_dir, "logo1.png"))
         title = Label(self.root, text="Inventory Management System", image=self.icon_title, compound=LEFT,
                       font=("times new roman", 40, "bold"), bg="dark blue", fg="white", anchor="w", padx=20).place(x=0,
                                                                                                                    y=0,

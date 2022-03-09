@@ -1,19 +1,28 @@
 # from cgitb import text
 # from textwrap import fill
+import re
 from tkinter import *
 # from turtle import title
-# from PIL import Image, ImageTk
+#from PIL import Image, ImageTk
 from tkinter import ttk, messagebox
 import sqlite3
 
+
 # from pkg_resources import EntryPoint
+from tkcalendar import DateEntry
 
 
 class employeeClass:
+    def checkEmail(self, val):
+        regex='^[a-z0-9]+[\._]?[a-z0-9]+[@]\w+[.]\w{2,3}$'
+        if re.search(regex, val):
+            return True
+        else:
+            return False
     def __init__(self, root):
         self.root = root
         self.root.geometry("1100x500+220+130")
-        self.root.title("Inventory Management System | Developed By Leena")
+        self.root.title("Inventory Management System")
         self.root.config(bg="white")
         self.root.focus_force()
 
@@ -71,6 +80,8 @@ class employeeClass:
         txt_contact = Entry(self.root, textvariable=self.var_contact, font=("goudy old style", 15), bg="lightyellow",
                             cursor="hand2").place(x=850, y=150, width=180)
 
+
+
         # ===row2===============
         lbl_name = Label(self.root, text="Name", font=("goudy old style", 15), bg="white", cursor="hand2").place(x=50,
                                                                                                                  y=190)
@@ -81,16 +92,21 @@ class employeeClass:
 
         txt_name = Entry(self.root, textvariable=self.var_name, font=("goudy old style", 15), bg="lightyellow").place(
             x=150, y=190, width=180)
-        txt_dob = Entry(self.root, textvariable=self.var_dob, font=("goudy old style", 15), bg="lightyellow").place(
-            x=500, y=190, width=180)
-        txt_doj = Entry(self.root, textvariable=self.var_doj, font=("goudy old style", 15), bg="lightyellow").place(
-            x=850, y=190, width=180)
+        #txt_dob = Entry(self.root, textvariable=self.var_dob, font=("goudy old style", 15), bg="lightyellow").place(
+         #   x=500, y=190, width=180)
+        #txt_doj = Entry(self.root, textvariable=self.var_doj, font=("goudy old style", 15), bg="lightyellow").place(
+         #   x=850, y=190, width=180)
+        DateEntry(self.root,width=180, textvariable=self.var_dob, font=("goudy old style", 15), bg="lightyellow",fg="white",bd=2).place( x=500, y=190, width=180)
+
+        DateEntry(self.root,width=180, textvariable=self.var_doj, font=("goudy old style", 15), bg="lightyellow",fg="white",bd=2).place(x=850,
+                                                                                                              y=190,
+                                                                                                              width=180)
 
         # ===row3===============
         lbl_email = Label(self.root, text="Email", font=("goudy old style", 15), bg="white").place(x=50, y=230)
         lbl_pass = Label(self.root, text="Password", font=("goudy old style", 15), bg="white").place(x=350, y=230)
         lbl_utype = Label(self.root, text="User Type", font=("goudy old style", 15), bg="white").place(x=750, y=230)
-
+        regEmail=self.root.register(self.checkEmail)
         txt_email = Entry(self.root, textvariable=self.var_email, font=("goudy old style", 15), bg="lightyellow").place(
             x=150, y=230, width=180)
         txt_pass = Entry(self.root, textvariable=self.var_pass, font=("goudy old style", 15), bg="lightyellow").place(
@@ -169,12 +185,14 @@ class employeeClass:
         try:
             if self.var_emp_id.get() == "":
                 messagebox.showerror("Error", "Employee ID must be required", parent=self.root)
-            if self.var_name.get()== "":
+            elif self.var_name.get()== "":
                    messagebox.showerror("Error", "Empty Name", parent=self.root)
-            if self.var_email.get()== "":
+            elif self.var_email.get()== "":
                    messagebox.showerror("Error", "Empty email", parent=self.root)
-            if self.var_gender.get() == "":
+            elif self.var_gender.get() == "":
                    messagebox.showerror("Error", "Empty gender", parent=self.root)
+            elif not self.checkEmail(self.var_email.get()):
+                messagebox.showerror("error","please enter valid email",parent=self.root)
 
 
 
@@ -271,6 +289,9 @@ class employeeClass:
         except Exception as ex:
             messagebox.showerror("Error", f"Error due to :{str(ex)}", parent=self.root)
 
+
+
+
     def delete(self):
         con = sqlite3.connect(database=r'protuple_inventory.db')
         cur = con.cursor()
@@ -329,6 +350,9 @@ class employeeClass:
                     messagebox.showerror("Error", "No record found", parent=self.root)
         except Exception as ex:
             messagebox.showerror("Error", f"Error due to :{str(ex)}", parent=self.root)
+
+
+
 
 
 if __name__ == "__main__":
