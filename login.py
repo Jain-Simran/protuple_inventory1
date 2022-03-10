@@ -18,7 +18,7 @@ class Login_system:
         self.root.config(bg="#fafafa")
 
         #==========Images====================
-        self.log_img = Image.open("C:\\Users\\simran\\Downloads\\log1.png")
+        self.log_img = Image.open(os.path.join(root_dir,"C:\\Users\\simran\\Downloads\\log1.png"))
         self.log_img = self.log_img.resize((500, 550), Image.ANTIALIAS)
         self.log_img = ImageTk.PhotoImage(self.log_img)
         lbl_img = Label(self.root, image=self.log_img, bd=0)

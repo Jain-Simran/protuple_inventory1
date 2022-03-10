@@ -16,7 +16,7 @@ from sales import salesClass
 from tkinter import messagebox
 import os
 import time
-
+root_dir=os.path.dirname(__file__)
 
 class IMS:
     def __init__(self, root):

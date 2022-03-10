@@ -2,8 +2,10 @@ import os
 from tkinter import *
 from PIL import Image, ImageTk #pip install pillow
 from tkinter import  messagebox#,ttk
-#import sqlite3
+# import sqlite3
+root_dir=os.path.dirname(__file__)
 class salesClass:
+
     def __init__(self, root):
         self.root = root
         self.root.geometry("1100x500+220+130")
@@ -51,7 +53,7 @@ class salesClass:
         self.bill_area.pack(fill=BOTH, expand=1)
 
         # ======================Image=================================
-        self.bill_photo = Image.open("C:\\Users\\simran\\Downloads\\bg.png")
+        self.bill_photo = Image.open(os.path.join(root_dir,"C:\\Users\\simran\\Downloads\\bg.png"))
         self.bill_photo = self.bill_photo.resize((450, 300), Image.ANTIALIAS)
         self.bill_photo = ImageTk.PhotoImage(self.bill_photo)
 
